@@ -6,7 +6,7 @@
         <div class="col-sm-6">
             <label class="control-label" for="inputPassword">Password</label>
         </div>
-        <div class="controls col-sm-6">
+        <div class="col-sm-6">
             <input type="password" id="inputPassword" name="password" class="form-control">
         </div>
     </div>
@@ -14,13 +14,11 @@
         <div class="col-sm-6">
             <label class="control-label" for="inputPasswordRepeat">Password repeat</label>
         </div>
-        <div class="controls col-sm-6">
+        <div class="col-sm-6">
             <input type="password" id="inputPasswordRepeat" name="passwordRepeat" class="form-control">
         </div>
     </div>
-    <div class="form-group">
-        <div class="controls text-center">
-            <input type="submit" name="msettings" value="Reset" class='btn btn-warning'>
-        </div>
+    <div class="text-center">
+        <input type="submit" name="msettings" value="Reset" class='btn btn-warning'>
     </div>
 </form>
