@@ -7,7 +7,7 @@
  * @author     Ulrich Block <ulrich.block@easy-wi.com>
  * @copyright  Copyright (c) Ulrich Block
  * @license    http://www.gnu.org/licenses/gpl-3.0
- * @version    1.8
+ * @version    1.9
  * @link       https://www.easy-wi.com.com/
  *
  * The Easy-WI WHMCS addon is free software: you can redistribute it and/or modify
@@ -64,10 +64,7 @@ if (!class_exists("EasyWi")) {
 function easywi_hook_user_add ($vars) {
 
     $easyWiObject = new EasyWi();
-
-    if ($easyWiObject->licenseCheck()) {
-        $easyWiObject->addUser($vars);
-    }
+    $easyWiObject->addUser($vars);
 }
 add_hook("ClientAdd", 1, "easywi_hook_user_add");
 add_hook("ClientAreaRegister", 1, "easywi_hook_user_add");
@@ -76,10 +73,7 @@ add_hook("ClientAreaRegister", 1, "easywi_hook_user_add");
 function easywi_hook_user_edit ($vars) {
 
     $easyWiObject = new EasyWi();
-
-    if ($easyWiObject->licenseCheck()) {
-        $easyWiObject->modUser($vars);
-    }
+    $easyWiObject->modUser($vars);
 }
 add_hook("ClientEdit", 1, "easywi_hook_user_edit");
 add_hook("ClientClose", 1, "easywi_hook_user_edit");
@@ -88,10 +82,7 @@ add_hook("ClientClose", 1, "easywi_hook_user_edit");
 function easywi_hook_user_password ($vars) {
 
     $easyWiObject = new EasyWi();
-
-    if ($easyWiObject->licenseCheck()) {
-        $easyWiObject->changePassword($vars);
-    }
+    $easyWiObject->changePassword($vars);
 }
 add_hook("ClientChangePassword", 1, "easywi_hook_user_password");
 
@@ -99,10 +90,7 @@ add_hook("ClientChangePassword", 1, "easywi_hook_user_password");
 function easywi_hook_user_remove ($vars) {
 
     $easyWiObject = new EasyWi();
-
-    if ($easyWiObject->licenseCheck()) {
-        $easyWiObject->removeUser($vars);
-    }
+    $easyWiObject->removeUser($vars);
 }
 add_hook("ClientDelete", 1, "easywi_hook_user_remove");
 
@@ -110,10 +98,7 @@ add_hook("ClientDelete", 1, "easywi_hook_user_remove");
 function easywi_hook_product_remove ($vars) {
 
     $easyWiObject = new EasyWi();
-
-    if ($easyWiObject->licenseCheck()) {
-        $easyWiObject->orderProvision($vars, "terminate");
-    }
+    $easyWiObject->orderProvision($vars, "terminate");
 }
 add_hook("CancelOrder", 1, "easywi_hook_product_remove");
 add_hook("DeleteOrder", 1, "easywi_hook_product_remove");
@@ -122,10 +107,7 @@ add_hook("ServiceDelete", 1, "easywi_hook_product_remove");
 function easywi_hook_product_pending ($vars) {
 
     $easyWiObject = new EasyWi();
-
-    if ($easyWiObject->licenseCheck()) {
-        $easyWiObject->orderProvision($vars, "pending");
-    }
+    $easyWiObject->orderProvision($vars, "pending");
 }
 add_hook("PendingOrder", 1, "easywi_hook_product_pending");
 
@@ -133,10 +115,7 @@ add_hook("PendingOrder", 1, "easywi_hook_product_pending");
 function easywi_hook_product_fraud ($vars) {
 
     $easyWiObject = new EasyWi();
-
-    if ($easyWiObject->licenseCheck()) {
-        $easyWiObject->orderProvision($vars, "fraud");
-    }
+    $easyWiObject->orderProvision($vars, "fraud");
 }
 add_hook("FraudOrder", 1, "easywi_hook_product_fraud");
 
@@ -144,10 +123,7 @@ add_hook("FraudOrder", 1, "easywi_hook_product_fraud");
 function easywi_hook_product_add ($vars) {
 
     $easyWiObject = new EasyWi();
-
-    if ($easyWiObject->licenseCheck()) {
-        $easyWiObject->orderProvision($vars, "add");
-    }
+    $easyWiObject->orderProvision($vars, "add");
 }
 add_hook("AcceptOrder", 1, "easywi_hook_product_add");
 
@@ -155,10 +131,7 @@ add_hook("AcceptOrder", 1, "easywi_hook_product_add");
 function easywi_hook_product_change ($vars) {
 
     $easyWiObject = new EasyWi();
-
-    if ($easyWiObject->licenseCheck()) {
-        $easyWiObject->orderProvision($vars, "mod");
-    }
+    $easyWiObject->orderProvision($vars, "mod");
 }
 add_hook("AfterProductUpgrade", 1, "easywi_hook_product_change");
 add_hook("AfterConfigOptionsUpgrade", 1, "easywi_hook_product_change");

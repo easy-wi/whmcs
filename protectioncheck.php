@@ -7,7 +7,7 @@
  * @author     Ulrich Block <ulrich.block@easy-wi.com>
  * @copyright  Copyright (c) Ulrich Block
  * @license    http://www.gnu.org/licenses/gpl-3.0
- * @version    1.8
+ * @version    1.9
  * @link       https://www.easy-wi.com.com/
  *
  * The Easy-WI WHMCS addon is free software: you can redistribute it and/or modify
@@ -58,7 +58,7 @@ require_once(WHMCS_MAIN_DIR . DS . "init.php");
 
 $easyWiObject = new EasyWi();
 
-if ($easyWiObject->protectionModule == "Yes" && $easyWiObject->licenseCheck()) {
+if ($easyWiObject->protectionModule == "Yes") {
 
     // Get the configured language: $whmcs->get_client_language() Fallback to $CONFIG["Language"] Else use english
     if (isset($_SESSION["Language"]) && preg_match("/[\w]{1,}/", $_SESSION["Language"]) && file_exists(WHMCS_MAIN_DIR . DS . "modules" . DS . "addons" . DS . "easywi" . DS . "lang" . DS . $_SESSION["Language"] . ".php")) {
