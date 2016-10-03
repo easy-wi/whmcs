@@ -7,7 +7,6 @@
  * @author     Ulrich Block <ulrich.block@easy-wi.com>
  * @copyright  Copyright (c) Ulrich Block
  * @license    http://www.gnu.org/licenses/gpl-3.0
- * @version    1.9
  * @link       https://www.easy-wi.com.com/
  *
  * The Easy-WI WHMCS addon is free software: you can redistribute it and/or modify
@@ -130,13 +129,17 @@ class EasyWi {
 
             $responseString = "WHMCS data used: ";
 
-            foreach ($this->optionsRaw as $k => $v) {
+            if (is_array($this->optionsRaw) or is_object($this->optionsRaw)) {
+                foreach ($this->optionsRaw as $k => $v) {
 
-                if (is_array($v)) {
-                    $v = json_encode($v);
+                    if (is_array($v)) {
+                        $v = json_encode($v);
+                    }
+
+                    $responseString .= "\"" . $k . "\"=>\"" . $v . "\",";
                 }
-
-                $responseString .= "\"" . $k . "\"=>\"" . $v . "\",";
+            } else if (is_string($this->optionsRaw)) {
+                $responseString .= $this->optionsRaw;
             }
 
             $responseString .= " WHMCS data after overwrite: ";
@@ -1486,8 +1489,11 @@ class EasyWi {
                 $gamesArray = array();
 
                 foreach ((array) $v->gamesavailable as $k => $v2) {
-                    $serverList["games"][$k] = (string) $v2;
-                    $gamesArray[] = (string) $k;
+
+                    $gameShorten = str_replace('hide_numeric_', '', $k);
+
+                    $serverList["games"][$gameShorten] = (string) $v2;
+                    $gamesArray[] = $gameShorten;
                 }
 
                 natsort($gamesArray);
