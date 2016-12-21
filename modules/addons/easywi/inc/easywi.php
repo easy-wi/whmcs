@@ -47,7 +47,7 @@ class EasyWi {
 
     function __construct () {
 
-        $this->versionFile = "1.9";
+        $this->versionFile = "2.0";
 
         $table = "tbladdonmodules";
         $fields = "setting,value";
