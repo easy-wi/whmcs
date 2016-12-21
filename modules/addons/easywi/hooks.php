@@ -7,7 +7,6 @@
  * @author     Ulrich Block <ulrich.block@easy-wi.com>
  * @copyright  Copyright (c) Ulrich Block
  * @license    http://www.gnu.org/licenses/gpl-3.0
- * @version    1.9
  * @link       https://www.easy-wi.com.com/
  *
  * The Easy-WI WHMCS addon is free software: you can redistribute it and/or modify

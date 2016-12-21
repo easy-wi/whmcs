@@ -666,6 +666,9 @@ class EasyWi {
                 $responseRaw = $this->apiCall($this->apiUserCrud("del", $vars));
 
             } else {
+
+                logActivity("Remove users was configured as '{$this->removeUsers}' user will only be deactivated.");
+
                 $vars = $this->localClientDetails($vars["userid"]);
                 $vars["status"] = "Inactive";
 
@@ -675,12 +678,9 @@ class EasyWi {
             $response = @simplexml_load_string($responseRaw);
 
             $this->addLogentry($vars, $response, $responseRaw);
+
         } else {
             logActivity("User sync is maintained as {$userSync}. User removal/inactive state will not be send to Easy-Wi");
-        }
-
-        if ($this->removeUsers != "Yes" || $userSync != "Y") {
-            $this->addLogentry(array("action" => "delete", "userSync" => $userSync, "syncUsers" => $this->syncUsers));
         }
 
         $this->deleteUserSyncEntry($vars["userid"]);
@@ -2049,18 +2049,20 @@ class EasyWi {
 
                 $leftOrders = $this->getRelevantOrderCount($userID, $serviceID);
 
-                if ($leftOrders == 0) {
+                if ($leftOrders == 0 && $this->removeUsers == "Yes") {
                     return $this->removeUser($this->localClientDetails($userID));
+                }
+
+                if ($leftOrders == 0) {
+                     $this->removeUser($this->localClientDetails($userID));
                 } else {
                     logActivity("{$leftOrders} order(s) left. User with ID {$userID} will not be removed from Easy-Wi after service ID {$serviceID} is gone.");
                 }
             }
 
-
             if ($action == "del" || ($userSynced && ($action == "add" || $action == "mod"))) {
 
                 $options = $this->configOptionsOverwrite($vars);
-                #logActivity("Options:".json_encode($options));
 
                 # allowed list is "Game server,Voice server,TSDNS,Webspace,MySQL"
                 if (isset($options["type"]) and in_array($options["type"], array("Game server", "Voice server", "TSDNS", "Webspace", "MySQL")))  {
