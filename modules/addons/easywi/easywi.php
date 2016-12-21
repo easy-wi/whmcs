@@ -56,7 +56,7 @@ if (!class_exists("EasyWi")) {
 
 function easywi_config() {
 
-    $version = "1.9";
+    $version = "2.0";
 
     $easyWiObject = new EasyWi();
     $newestVersion = $easyWiObject->checkForUpdate();
