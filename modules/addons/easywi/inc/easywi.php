@@ -844,7 +844,8 @@ class EasyWi {
                         "brandname" => (string) $server->forceservertag,
                         "forcewelcome" => (string) $server->forcewelcome,
                         "traffic" => (string) $server->maxtraffic,
-                        "externalID" => (string) $server->externalID
+                        "externalID" => (string) $server->externalID,
+			"servertoken" => (string) $server->servertoken
                     );
                 }
             }
@@ -1820,7 +1821,11 @@ class EasyWi {
                 if (strlen($response->dbname) > 1) {
                     $customAttributes["name"] = (string) $response->dbname;
                 }
-
+		
+		if (strlen($response->servertoken > 1) {
+		    $customAttributes["servertoken"] = (string) $response->servertoken;
+		}
+		    
                 $this->fillCustomAttributes($serviceID, $customAttributes);
             }
 
