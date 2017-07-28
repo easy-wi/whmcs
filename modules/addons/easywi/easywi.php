@@ -105,33 +105,33 @@ function easywi_activate() {
 
     $successArray = array();
 
-    $query = "CREATE TABLE IF NOT EXISTS `mod_easywi_user_synced` (`user_id` int(10) unsigned NOT NULL,`synced` enum('Y','N') NOT NULL DEFAULT 'N', PRIMARY KEY (`user_id`)) ENGINE=InnoDB";
+    $query = "CREATE TABLE IF NOT EXISTS `mod_easywi_user_synced` (`user_id` int(10) unsigned NOT NULL,`synced` enum('Y','N') NOT NULL DEFAULT 'N', PRIMARY KEY (`user_id`)) COLLATE='latin1_general_ci' ENGINE=InnoDB";
     full_query($query);
 
     $successArray[] = "Created table mod_easywi_service_synced";
 
-    $query = "CREATE TABLE IF NOT EXISTS `mod_easywi_service_synced` (`user_id` int(10) unsigned NOT NULL,`service_id` int(10) unsigned NOT NULL,`synced` enum('Y','N') NOT NULL DEFAULT 'N', PRIMARY KEY (`user_id`,`service_id`)) ENGINE=InnoDB";
+    $query = "CREATE TABLE IF NOT EXISTS `mod_easywi_service_synced` (`user_id` int(10) unsigned NOT NULL,`service_id` int(10) unsigned NOT NULL,`synced` enum('Y','N') NOT NULL DEFAULT 'N', PRIMARY KEY (`user_id`,`service_id`)) COLLATE='latin1_general_ci' ENGINE=InnoDB";
     full_query($query);
 
-    $query = "CREATE TABLE IF NOT EXISTS `mod_easywi_options_name_alias` (`id` int(10) unsigned NOT NULL AUTO_INCREMENT,`technical_name` varchar(255) NOT NULL,`alias` varchar(255) NOT NULL, PRIMARY KEY (`id`), UNIQUE (`alias`)) ENGINE=InnoDB";
+    $query = "CREATE TABLE IF NOT EXISTS `mod_easywi_options_name_alias` (`id` int(10) unsigned NOT NULL AUTO_INCREMENT,`technical_name` varchar(255) NOT NULL,`alias` varchar(255) NOT NULL, PRIMARY KEY (`id`), UNIQUE (`alias`)) COLLATE='latin1_general_ci' ENGINE=InnoDB";
     full_query($query);
 
     $successArray[] = "Created table mod_easywi_options_name_alias";
 
-    $query = "CREATE TABLE IF NOT EXISTS `mod_easywi_value_name_alias` (`id` int(10) unsigned NOT NULL AUTO_INCREMENT, `option_alias_id` int(10) unsigned NOT NULL ,`technical_name` varchar(255) NOT NULL,`alias` varchar(255) NOT NULL, PRIMARY KEY (`id`), UNIQUE (`alias`)) ENGINE=InnoDB";
+    $query = "CREATE TABLE IF NOT EXISTS `mod_easywi_value_name_alias` (`id` int(10) unsigned NOT NULL AUTO_INCREMENT, `option_alias_id` int(10) unsigned NOT NULL ,`technical_name` varchar(255) NOT NULL,`alias` varchar(255) NOT NULL, PRIMARY KEY (`id`), UNIQUE (`alias`)) COLLATE='latin1_general_ci' ENGINE=InnoDB";
     full_query($query);
 
     $successArray[] = "Created table mod_easywi_options_name_mapping";
 
-    $query = "CREATE TABLE IF NOT EXISTS `mod_easywi_protection_mode_cache` (`address` varchar(21) NOT NULL,`response` blob,`checked_at` timestamp DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY (`address`)) ENGINE=InnoDB";
+    $query = "CREATE TABLE IF NOT EXISTS `mod_easywi_protection_mode_cache` (`address` varchar(21) NOT NULL,`response` blob,`checked_at` timestamp DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY (`address`)) COLLATE='latin1_general_ci' ENGINE=InnoDB";
     full_query($query);
 
     $successArray[] = "Created table mod_easywi_protection_mode_cache";
 
-    $query = "CREATE TABLE IF NOT EXISTS `mod_easywi_lendserver_cache` (`address` varchar(21) NOT NULL,`type` enum('G','V'),`response` blob,`checked_at` timestamp DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY (`address`,`type`)) ENGINE=InnoDB";
+    $query = "CREATE TABLE IF NOT EXISTS `mod_easywi_lendserver_cache` (`address` varchar(21) NOT NULL,`type` enum('G','V'),`response` blob,`checked_at` timestamp DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY (`address`,`type`)) COLLATE='latin1_general_ci' ENGINE=InnoDB";
     full_query($query);
 
-    $query = "CREATE TABLE IF NOT EXISTS `mod_easywi_lendserver_cookies` (`cookie` varchar(40) NOT NULL,`gs` enum('Y','N') DEFAULT 'N',`vo` enum('Y','N') DEFAULT 'N,`last_changed` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,PRIMARY KEY (`cookie`)) ENGINE=InnoDB";
+    $query = "CREATE TABLE IF NOT EXISTS `mod_easywi_lendserver_cookies` (`cookie` varchar(40) NOT NULL,`gs` enum('Y','N') DEFAULT 'N',`vo` enum('Y','N') DEFAULT 'N,`last_changed` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,PRIMARY KEY (`cookie`)) COLLATE='latin1_general_ci' ENGINE=InnoDB";
     full_query($query);
 
     $successArray[] = "Created table mod_easywi_lendserver_cache";
@@ -181,7 +181,7 @@ function easywi_upgrade ($vars) {
 
     # Run SQL Updates for V1.1 to V1.2
     if ($version < 1.2) {
-        $query = "CREATE TABLE IF NOT EXISTS `mod_easywi_value_name_alias` (`id` int(10) unsigned NOT NULL AUTO_INCREMENT, `option_alias_id` int(10) unsigned NOT NULL ,`technical_name` varchar(255) NOT NULL,`alias` varchar(255) NOT NULL, PRIMARY KEY (`id`), UNIQUE (`option_alias_id`,`alias`)) ENGINE=InnoDB";
+        $query = "CREATE TABLE IF NOT EXISTS `mod_easywi_value_name_alias` (`id` int(10) unsigned NOT NULL AUTO_INCREMENT, `option_alias_id` int(10) unsigned NOT NULL ,`technical_name` varchar(255) NOT NULL,`alias` varchar(255) NOT NULL, PRIMARY KEY (`id`), UNIQUE (`option_alias_id`,`alias`)) COLLATE='latin1_general_ci' ENGINE=InnoDB";
         $result = mysql_query($query);
     }
 
