@@ -1,4 +1,4 @@
-# Easy-Wi WHCMS Addon
+# Easy-Wi WHCMS Addon (Not Supported anymore)
 
 If installed and configured, this addon will allow to sync products to Easy-Wi and pull Easy-Wi servers into WHMCS.
 
